@@ -1,0 +1,7 @@
+{
+  "name": "app_android_camera",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
