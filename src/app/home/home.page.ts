@@ -1,36 +1,32 @@
 import { Component } from '@angular/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { IonButton, IonContent, IonHeader, IonImg, IonTitle, IonToolbar } from '@ionic/angular/standalone';
-import { NgIf } from '@angular/common'; // ← importar aqui!
+import { NgIf } from '@angular/common';
+import { IonButton, IonContent, IonHeader, IonTitle, IonToolbar, IonImg } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonContent,
-    IonButton,
-    IonImg,
-    NgIf // ← adicionar aqui também!
-  ],
+  imports: [NgIf, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, IonImg],
 })
 export class HomePage {
-  imageUrl: string | undefined;
+  foto: string | null = null;
 
   constructor() {}
 
-  async takePicture() {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: false,
-      resultType: CameraResultType.DataUrl,
-      source: CameraSource.Camera,
-    });
+  async tirarFoto() {
+    try {
+      const imagem = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: false,
+        resultType: CameraResultType.DataUrl,
+        source: CameraSource.Camera,
+      });
 
-    this.imageUrl = image.dataUrl;
+      this.foto = imagem.dataUrl!;
+    } catch (error) {
+      console.error('Erro ao tirar foto:', error);
+    }
   }
 }

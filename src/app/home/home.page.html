@@ -1,15 +1,16 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Câmera Android
-    </ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>📷 Câmera Android</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-button expand="block" (click)="takePicture()">Tirar Foto</ion-button>
+<ion-content class="content-custom">
+  <h2 class="titulo">TIRAR FOTO</h2>
+  <ion-button expand="block" color="primary" (click)="tirarFoto()">
+    Tirar Foto
+  </ion-button>
 
-  <div *ngIf="imageUrl">
-    <ion-img [src]="imageUrl"></ion-img>
+  <div class="foto-container" *ngIf="foto">
+    <img [src]="foto" alt="Foto capturada" class="foto-preview" />
   </div>
 </ion-content>
